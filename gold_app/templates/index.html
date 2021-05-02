@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninja Gold</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">   
+</head>
+<body>
+    <div class="container">
+        <h4>Your Gold: <input type='text' disabled value='${{request.session.total_gold}}''></h4>
+        <div class="row">
+          <div class="location">
+            <h4>Farm: 10 - 20 GOLD</h4>
+            <img src="{% static 'img/farm.png' %}" alt='farm' class='image' />
+            <form action="/process_money" method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="location" value="farm" />
+              <input type="submit" class="btn btn-success pull-right" value="Find Gold!">
+            </form>
+          </div>
+          <div class="location">
+            <h4>Cave: 5 - 10 GOLD</h4>
+            <img src="{% static 'img/cave.png' %}" alt='cave' class='image' />
+            <form action="/process_money" method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="location" value="cave" />
+              <input type="submit" class="btn btn-success pull-right" value="Find Gold!">
+            </form>
+          </div>
+          <div class="location">
+            <h4>House: 2 - 5 GOLD</h4>
+            <img src="{% static 'img/house.jpg' %}" alt='house' class='image' />
+            <form action="/process_money" method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="location" value="house" />
+              <input type="submit" class="btn btn-success pull-right" value="Find Gold!">
+            </form>
+          </div>
+          <div class="location">
+            <h4>Casino: Earn/Lose 0 - 50 GOLD</h4>
+            <img src="{% static 'img/casino.png' %}" alt='casino' class='image' />
+            <form action="/process_money" method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="location" value="casino" />
+              <input type="submit" class="btn btn-success pull-right" value="Find Gold!">
+            </form>
+          </div>
+        </div>
+        <div class="reset">  
+            <form action="/reset" method="POST">
+            {% csrf_token %}
+            <input type="submit" class="submit" value="Reset/Play Again">
+            </form>
+          </div>
+      
+        <div class="activities">
+          <h3>Activities:</h3>
+            {% for log in request.session.activities reversed %}
+              {% if "lost" in log %}
+                <h4 class="lost">{{ log }}</h4>
+              {% else %}
+                <h4 class="win">{{ log }}</h4>
+              {% endif %}
+            {% endfor %}
+        </div>
+      </div>
+</body>
+</html>

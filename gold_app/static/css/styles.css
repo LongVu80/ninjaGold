@@ -1,0 +1,36 @@
+body{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: goldenrod;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.location{
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+}
+.image{
+    height: 100px;
+    width: 100px;
+}
+.lost{
+    color: red;
+}
+.reset{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.submit{
+    background-color: blue;
+    color: white;
+    margin: 50px;
+}
